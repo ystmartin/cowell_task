@@ -29,7 +29,7 @@
   $cowellman  = $_COOKIE["cowellman"];
   $meetdate  = $_GET["meetdate"];
   ?>
-  <table class="table">
+  <table class="table  container">
     <tr>
       <td>會議日期:<?php echo $meetdate; ?></td>
       <td>永信代表:<?php echo $ysman; ?></td>
@@ -44,7 +44,7 @@
     }
 
     ?>
-    <table class="table">
+    <table class="table container">
       <thead>
         <tr>
           <th scope="col">編號</th>
@@ -108,6 +108,18 @@
         <div class="col">
           <label for="memo" class="memo" style="width: 200px;height: 30px;">備註</label>
           <input type='text' name='memo' placeholder="備註" style="width: 600px;height: 30px;">
+        </div>
+        <div class="col">
+          <label for="status" class="status" style="width: 200px;height: 30px;">狀態</label>
+          <select name="status" style="width: 600px; height: 30px;">
+            <option value="提出需求" selected>提出需求</option>
+            <option value="完成需求">完成需求</option>
+            <option value="評估中">評估中</option>
+            <option value="無法處理">無法處理</option>
+            <option value="不要處理">不要處理</option>
+            <option value="取消需求">取消需求</option>
+            <option value="其他">其他</option>
+          </select>
         </div>
         <div class="col">
           <input class="input-submit" type="submit" value="儲存" />

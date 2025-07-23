@@ -45,52 +45,20 @@
     <thead>
       <tr>
         <th>會議日期</th>
-        <th>議題總數</th>
-        <th>提出需求</th>
-        <th>完成需求</th>
-        <th>評估中</th>
-        <th>無法處理</th>
-        <th>不要處理</th>
-        <th>取消需求</th>
-        <th>其他</th>
         <th style="text-align:right;">進入</th>
       </tr>
     </thead>
     <tbody>
       <?php
-      $sql = "
-SELECT 
-  meetdate,
-  COUNT(*) AS total,
-  SUM(CASE WHEN status = '提出需求' THEN 1 ELSE 0 END) AS status01,
-  SUM(CASE WHEN status = '完成需求' THEN 1 ELSE 0 END) AS status02,
-  SUM(CASE WHEN status = '評估中' THEN 1 ELSE 0 END) AS status03,
-  SUM(CASE WHEN status = '無法處理' THEN 1 ELSE 0 END) AS status04,
-  SUM(CASE WHEN status = '不要處理' THEN 1 ELSE 0 END) AS status05,
-  SUM(CASE WHEN status = '取消需求' THEN 1 ELSE 0 END) AS status06,
-  SUM(CASE WHEN status = '其他' THEN 1 ELSE 0 END) AS status07,
-
-  MAX(mid) as mid
-FROM meet_task
-GROUP BY meetdate
-ORDER BY mid DESC
-LIMIT $limit OFFSET $offset
-";
-
+      // 查詢本頁資料
+      $sql = "SELECT meetdate, MAX(mid) as mid FROM meet_task GROUP BY meetdate ORDER BY mid DESC LIMIT $limit OFFSET $offset";
       $result = execute_sql($link, "tw1_cowell_task", $sql);
 
       while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row['meetdate'] . "</td>";
-        echo "<td>" . $row['total'] . "</td>";
-        echo "<td>" . $row['status01'] . "</td>";
-        echo "<td>" . $row['status02'] . "</td>";
-        echo "<td>" . $row['status03'] . "</td>";
-        echo "<td>" . $row['status04'] . "</td>";
-        echo "<td>" . $row['status05'] . "</td>";
-        echo "<td>" . $row['status06'] . "</td>";
-        echo "<td>" . $row['status07'] . "</td>";
         echo "<td style='text-align:right;'><a class='btn btn-primary' href='crmeet.php?meetdate=" . urlencode($row['meetdate']) . "'>進入</a></td>";
+        
         echo "</tr>";
       }
       ?>

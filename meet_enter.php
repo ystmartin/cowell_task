@@ -33,13 +33,13 @@
 
 
   ?>
-  <table class="table">
+  <table class="table container">
     <tr>
       <td>永信代表:<?php echo $ysman; ?></td>
       <td>科威代表:<?php echo $cowellman; ?></td>
     </tr>
 
-    <table class="table">
+    <table class="table container">
       <thead>
         <tr>
           <th scope="col">編號</th>
@@ -76,7 +76,7 @@
         <H1><a href="crmeet.php?meetdate=<?php echo $meetdate?>">議題回覆</a></H1>
       </div>
     </div>
-    <table class="table">
+    <table class="table container">
       <thead>
         <tr>
           <th scope="col">議題編號</th>

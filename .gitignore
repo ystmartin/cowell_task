@@ -1,0 +1,15 @@
+# 忽略敏感設定檔
+config.php
+.env
+
+# 忽略 composer 安裝的套件
+/vendor/
+
+# 忽略 log 檔案
+*.log
+
+# 忽略 IDE 相關檔案
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

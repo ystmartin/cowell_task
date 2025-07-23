@@ -29,12 +29,17 @@
 
   $mid = $_GET["mid"];
   require_once("dbtools.inc.php");
+      $link = create_connection();
+    $sql = "SELECT * FROM meet_task where mid='$mid' ";
+    $result = execute_sql($link, "tw1_cowell_task", $sql);
+    $row = mysqli_fetch_assoc($result);
+    $meetdate=$row['meetdate'];
   date_default_timezone_set("Asia/Shanghai");
   ?>
 
     <div class="text-center">
       <div>
-        <H1>會議清單</H1>
+        <H1><a href="crmeet.php?meetdate=<?php echo $meetdate;?>">編輯議題</a></H1>
       </div>
     </div>
     <?php
@@ -95,13 +100,13 @@
           <label for="status" class="status" style="width: 200px;height: 30px;">狀態</label>
           <select name="status" style="width: 600px; height: 30px;">
             <option value="">-- 請選擇狀態 --</option>
-            <option value="提出需求" <?php if ($row['memo'] == '提出需求') echo 'selected'; ?>>提出需求</option>
-            <option value="完成需求" <?php if ($row['memo'] == '完成需求') echo 'selected'; ?>>完成需求</option>
-            <option value="評估中" <?php if ($row['memo'] == '評估中') echo 'selected'; ?>>評估中</option>
-            <option value="無法處理" <?php if ($row['memo'] == '無法處理') echo 'selected'; ?>>無法處理</option>
-            <option value="不要處理" <?php if ($row['memo'] == '不要處理') echo 'selected'; ?>>不要處理</option>
-            <option value="取消需求" <?php if ($row['memo'] == '取消需求') echo 'selected'; ?>>取消需求</option>
-            <option value="其他" <?php if ($row['memo'] == '其他') echo 'selected'; ?>>其他</option>
+            <option value="提出需求" <?php if ($row['status'] == '提出需求') echo 'selected'; ?>>提出需求</option>
+            <option value="完成需求" <?php if ($row['status'] == '完成需求') echo 'selected'; ?>>完成需求</option>
+            <option value="評估中" <?php if ($row['status'] == '評估中') echo 'selected'; ?>>評估中</option>
+            <option value="無法處理" <?php if ($row['status'] == '無法處理') echo 'selected'; ?>>無法處理</option>
+            <option value="不要處理" <?php if ($row['status'] == '不要處理') echo 'selected'; ?>>不要處理</option>
+            <option value="取消需求" <?php if ($row['status'] == '取消需求') echo 'selected'; ?>>取消需求</option>
+            <option value="其他" <?php if ($row['status'] == '其他') echo 'selected'; ?>>其他</option>
           </select>
         </div>
         <div class="col">
