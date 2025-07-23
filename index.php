@@ -20,9 +20,24 @@
   <?php
   require_once("dbtools.inc.php");
   date_default_timezone_set("Asia/Shanghai");
+  session_start();
+
+  //echo $_SESSION['email'];
+  if (!isset($_SESSION['email'])) {
+
+    header("Location: login.php");
+    exit;
+  }
+
+  if (!$_COOKIE["ysman"]) {
+    setcookie("ysman", '馬丁', time() + 28800);
+    setcookie("cowellman", 'Dily', time() + 28800);
+  }
+
 
   $ysman   = $_COOKIE["ysman"];
   $cowellman  = $_COOKIE["cowellman"];
+  $email  = $_SESSION['email'];
 
   // 分頁參數
   $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -38,6 +53,16 @@
       <td>永信代表:<?php echo htmlspecialchars($ysman); ?></td>
       <td>科威代表:<?php echo htmlspecialchars($cowellman); ?></td>
       <td><a href="report_list.php">報表及搜尋</a></td>
+      <?php
+      $link = create_connection();
+      $sql = "SELECT * FROM accounts where email = '$email' ";
+      $result = execute_sql($link, "tw1_cowell_task", $sql);
+      $row = $result->fetch_assoc();
+
+      ?>
+
+      <td>帳號:<?php echo $row['account']; ?></td>
+      <td><a href="logout.php">登出</a></td>
     </tr>
   </table>
 

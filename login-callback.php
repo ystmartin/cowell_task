@@ -25,6 +25,6 @@ if (isset($_GET['code'])) {
     $_SESSION['email'] = $userinfo->email;
     $_SESSION['picture'] = $userinfo->picture;
 
-    header('Location: welcome.php');
+    header('Location: index.php');
     exit;
 }

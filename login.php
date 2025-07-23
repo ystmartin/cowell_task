@@ -14,4 +14,52 @@ $client->addScope("profile");
 
 $authUrl = $client->createAuthUrl();
 ?>
-<a href="<?= htmlspecialchars($authUrl) ?>">使用 Google 帳號登入</a>
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>會員登入</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f0f0; padding: 40px; }
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box;
+        }
+        button {
+            width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none;
+            border-radius: 5px; font-size: 16px;
+        }
+        .google-login {
+            display: block; text-align: center; margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>會員登入</h2>
+    <form method="post" action="login_process.php">
+        <label for="username">帳號</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">密碼</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">登入</button>
+    </form>
+
+    <div class="google-login">
+        <a href="<?= htmlspecialchars($authUrl) ?>">👉 使用 Google 帳號登入</a>
+    </div>
+</div>
+
+</body>
+</html>
