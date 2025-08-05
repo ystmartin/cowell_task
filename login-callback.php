@@ -18,7 +18,7 @@ if (isset($_GET['code'])) {
     $oauth = new Google_Service_Oauth2($client);
     $userinfo = $oauth->userinfo->get();
 
-    // 顯示或處理使用者資料
+    // 顯示級處理使用者資料
     session_start();
     $_SESSION['google_id'] = $userinfo->id;
     $_SESSION['name'] = $userinfo->name;

@@ -3,6 +3,8 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 $mid = $_GET['mid'];
 echo 'mid:'.$mid."<br>";
+$meetdate = $_POST["meetdate"];
+echo 'meetdate:'.$meetdate."<br>";
 $title = $_POST["title"];
 echo 'title:'.$title."<br>";
 $content = $_POST["content"];
@@ -21,7 +23,7 @@ $link = create_connection();
 $sql = "SELECT * FROM meet_task where mid=$mid ";
 $result = execute_sql($link, "tw1_cowell_task", $sql);
 $row = mysqli_fetch_assoc($result);
-$meetdate = $row['meetdate'];
+// $meetdate = $row['meetdate'];
 echo 'meetdate:'.$meetdate."<br>";
 
 mysqli_select_db($link, "tw1_cowell_task");
@@ -30,7 +32,7 @@ $link->set_charset("utf8mb4");
 // 準備 UPDATE 語句
 $stmt = $link->prepare("
     UPDATE `meet_task`
-    SET title = ?, content = ?, memo = ?, applyman = ?, status = ?, statusdate = ?
+    SET meetdate = ?, title = ?, content = ?, memo = ?, applyman = ?, status = ?, statusdate = ?
     WHERE mid = ?
 ");
 
@@ -39,7 +41,7 @@ if (!$stmt) {
 }
 
 // 正確綁定參數
-$stmt->bind_param("sssssss", $title, $content, $memo, $applyman, $status, $statusdate, $mid);
+$stmt->bind_param("ssssssss", $meetdate, $title, $content, $memo, $applyman, $status, $statusdate, $mid);
 
 // 執行更新
 if (!$stmt->execute()) {

@@ -37,7 +37,7 @@
     <thead>
       <tr>
         <?php
-        $array = array("提出需求", "完成需求", "待提需求", "評估中", "無法處理", "不要處理", "取消需求", "其他");
+        $array = array("提出需求", "評估中", "完成需求", "無法處理", "不要處理", "取消需求", "其他");
         foreach ($array as $status) {
           echo "<th scope='col'><a href='report_list.php?key=" . urlencode($status) . "'>$status</a></th>";
         }
