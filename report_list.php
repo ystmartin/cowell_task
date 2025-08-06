@@ -23,6 +23,12 @@
   <?php
   require_once("dbtools.inc.php");
   date_default_timezone_set("Asia/Shanghai");
+  session_start();
+   if (!isset($_SESSION['email'])) {
+
+    header("Location: login.php");
+    exit;
+  }
 
   $ysman   = $_COOKIE["ysman"];
   $cowellman  = $_COOKIE["cowellman"];

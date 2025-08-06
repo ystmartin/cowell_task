@@ -98,7 +98,7 @@ SELECT
   MAX(mid) as mid
 FROM meet_task
 GROUP BY meetdate
-ORDER BY mid DESC
+ORDER BY meetdate DESC
 LIMIT $limit OFFSET $offset
 ";
 

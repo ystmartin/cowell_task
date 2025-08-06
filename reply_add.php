@@ -1,4 +1,10 @@
 <?php
+  session_start();
+   if (!isset($_SESSION['email'])) {
+
+    header("Location: login.php");
+    exit;
+  }
 $mid  = $_POST["mid"];
 $replycontent =$_POST["replycontent"];
 $replymemo  = $_POST["replymemo"];

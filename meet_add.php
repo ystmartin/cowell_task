@@ -7,6 +7,12 @@ $status  = $_POST["status"];
 $meetdate = date("Y-m-d");
 
 require_once("dbtools.inc.php");
+  session_start();
+   if (!isset($_SESSION['email'])) {
+
+    header("Location: login.php");
+    exit;
+  }
 $link = create_connection();
 mysqli_select_db($link, "tw1_cowell_task");
 $link->set_charset("utf8mb4");

@@ -1,6 +1,13 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
+  session_start();
+   if (!isset($_SESSION['email'])) {
+
+    header("Location: login.php");
+    exit;
+  }
 $mid = $_GET['mid'];
 echo 'mid:'.$mid."<br>";
 $meetdate = $_POST["meetdate"];
